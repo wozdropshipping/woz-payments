@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Woz Payments | Cobrá del exterior en Paraguay fácil y rápido</title>
+    <meta name="description" content="La billetera digital paraguaya para freelancers y negocios. Recibí pagos internacionales, cobrá suscripciones y retirá a tu banco local con total transparencia.">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="wozpayments.css">
+    <!-- Meta Pixel Code -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '848176158125300');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=848176158125300&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Meta Pixel Code -->
+</head>
+<body>
+    <a id="floatingWhatsApp" href="https://wa.me/595974141073" target="_blank" aria-label="Hablar por WhatsApp">
+        <img src="assets/images/whatsappchat.png" alt="Contacto por WhatsApp" />
+    </a>
+    <section id="hero" class="section" style="background-color: var(--color-bg-light);">
+        <div class="container hero-layout">
+            <div class="hero-text align-left">
+                <h1>Woz Payments</h1>
+                <h2>Cobrá del exterior en paraguay<br>fácil, rápido y a tu banco local.</h2>
+                <p class="subtitle">La billetera digital paraguaya diseñada para freelancers, emprendedores y negocios que reciben pagos internacionales, suscripciones o ventas online.</p>
+                <ul class="benefits-list-inline" aria-label="Beneficios de usar Woz Payments">
+                    <h3>¿Que podes hacer con Woz Payments?</h3>
+                    <li>Recibir dinero del extranjero (Link, QR)</li>
+                    <li>Cobrar tus ventas de cursos online (Hotmart, Udemy, otros)</li>
+                    <li>Servicios freelance (diseño, programación, consultoría)</li>
+                    <li>Integra links de pago en tu tienda. (Shopify, WooCommerce)</li>
+                    <li>Productos digitales (e-books, música, software)</li>
+                    <li>Contenido exclusivo (OnlyFans, Patreon, otros)</li>
+                </ul>
+
+                <div class="cta-group left">
+                    <a href="https://wozpayments.com/register" class="cta-button cta-primary cta-register" target="_blank" rel="noopener">Registrate desde Gs 250.000 anual</a>
+                    <a href="https://wozpayments.com/login" class="cta-button cta-secondary cta-login" target="_blank" rel="noopener">Inicia sesión</a>
+                    <!-- <a href="#" class="cta-button cta-primary" id="btn-open-woz-form">Genera un link de prueba</a> -->
+                </div>
+            </div>
+            <div class="hero-media">
+                <div class="hero-demo-title" id="heroDemoTitle">Generar un QR para tu cliente</div>
+                <div class="hero-device-selector" style="margin-bottom: 10px;">
+                    <button class="device-btn active" data-device="phone" title="Celular" aria-selected="true">
+                        <svg width="28" height="28" viewBox="0 0 28 28"><rect x="7" y="3" width="14" height="22" rx="4" fill="#eee" stroke="#bbb" stroke-width="2"/><rect x="12" y="22" width="4" height="2" rx="1" fill="#bbb"/></svg>
+                    </button>
+                    <button class="device-btn" data-device="tablet" title="Tablet" aria-selected="false">
+                        <svg width="32" height="28" viewBox="0 0 32 28"><rect x="4" y="4" width="24" height="20" rx="3" fill="#eee" stroke="#bbb" stroke-width="2"/><rect x="14" y="22" width="4" height="2" rx="1" fill="#bbb"/></svg>
+                    </button>
+                </div>
+                <div id="wozHeroDemo" class="woz-hero-demo" data-device="phone" data-type="qr" aria-live="polite">
+                    <div class="device-frame phone" id="heroDeviceFrame">
+                        <!-- Aquí va tu chat animado -->
+                        <div class="chat-header">
+                            <div class="chat-avatar"></div>
+                            <div class="chat-title">Juan Carlos Lopez</div>
+                        </div>
+                        <div class="chat-screen">
+                            <div class="chat-bubbles">
+                                <div class="bubble out" id="heroBubbleMain">
+                                    <span id="heroQRImg" class="chat-qr-svg" style="display:block; margin-bottom:8px;"></span>
+                                    <div class="chat-link" id="heroLinkBox">
+                                        <div class="chat-link-title">Pago Woz Payments</div>
+                                        <div class="chat-link-url" id="heroLinkText">https://woz-payments.example/link?demo=1</div>
+                                    </div>
+                                </div>
+                                <div class="bubble out" id="heroBubbleText"><span>Holaa, este es el link de pago</span></div>
+                                <div class="typing" id="heroTyping"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+                                <div class="bubble in" id="heroBubbleReply"><span>Holaa, que tal? sí, te pago</span></div>
+                            
+                            </div>
+                            <div class="chat-input">
+                                <input type="text" placeholder="Escribir mensaje" readonly />
+                                <button class="chat-send" aria-label="Enviar">➤</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-type-switch" style="margin-top: 12px;">
+                    <button class="demo-type-btn active" data-type="qr" aria-pressed="true">QR</button>
+                    <button class="demo-type-btn" data-type="link" aria-pressed="false">Link</button>
+                </div>
+                <div class="cta-group center" style="margin-top: 14px;">
+                    <a href="#" class="cta-button cta-primary" id="btn-open-woz-form">Genera un link de prueba</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <hr class="divider">
+
+    <section id="como-funciona" class="section">
+        <div class="container">
+            <h2>Hacelo simple, en tan solo 4 pasos</h2>
+
+            <div class="steps-slider" role="region" aria-label="Cómo funciona: 4 pasos">
+                <button class="slider-btn prev" aria-label="Anterior">‹</button>
+
+                <div class="slider-track">
+                    <article class="slide" data-index="0" aria-roledescription="slide">
+                        <div class="slide-content">
+                            <h3><span class="step-badge">1</span><span class="step-title">Activar la Cuenta Woz Payments</span></h3>
+                            <p>Activá tu plan anual de Woz Payments y verificá tu identidad para operar.</p>
+                            <div class="desktop-only">
+                                <p>Con Woz Payments podés comenzar a operar desde Gs. 250.000 al año,<br>accediendo a una cuenta digital diseñada para freelancers,<br> emprendedores y negocios que reciben pagos internacionales.</p><br>
+
+                                <p>La activación es rápida y transparente: elegí tu plan,<br> realizá el pago único y en minutos tendrás tu billetera<br> lista para usar.</p><br>
+
+                                <p>Para garantizar seguridad y cumplimiento regulatorio,<br> el sistema solicita una verificación facial. Este proceso es simple,<br> se realiza desde tu dispositivo y asegura que solo vos tengas acceso a tu cuenta.</p><br>
+
+                                <p>Una vez validada tu identidad, podrás operar con total confianza,<br> sabiendo que tus fondos y datos están protegidos<br> con protocolos de cifrado avanzados.</p>
+                            </div>
+                        </div>
+                        <div class="slide-media">
+                               <img src="assets/images/Activar la Cuenta Woz Payments.jpg" alt="Activar la Cuenta Woz Payments" class="how-img" />
+                        </div>
+                    </article>
+
+                    <article class="slide" data-index="1" aria-roledescription="slide">
+                        <div class="slide-content">
+                            <h3><span class="step-badge">2</span><span class="step-title">Generar el método de pago</span></h3>
+                            <p>Creá un link único o un código QR para tu cliente,o implemen tá nuestro botón de pago en tu web usando la API.</p><br>
+                            <div class="desktop-only">
+                                <p>Generá un link de pago personalizado para cada cliente o venta. <br>Este enlace es único y puede incluir el monto,<br> la descripción del servicio o producto, y la moneda en la que querés cobrar.</p><br>
+
+                                <p>Si preferís algo más visual, podés generar un código QR <br>que tu cliente escanea desde su celular<br> para completar el pago en segundos.</p><br>
+
+                                <p>Para negocios con presencia online, <br>Woz ofrece un botón de pago integrado vía API,<br> ideal para tiendas en Shopify, WooCommerce o páginas personalizadas.<br> Con esta opción, tus clientes pagan directamente desde tu sitio web<br> sin pasos adicionales.</p><br>
+
+                                <p>La flexibilidad es total: <br>podés usar links, QR o integración API<br> según el tipo de cliente y el canal de venta.</p>
+                            </div>
+                        </div>
+                           <div class="slide-media">
+                               <img src="assets/images/Generar el método de pago.jpg" alt="Generar el método de pago" title="Generar el método de pago" class="how-img" />
+                           </div>
+                    </article>
+
+                    <article class="slide" data-index="2" aria-roledescription="slide">
+                        <div class="slide-content">
+                            <h3><span class="step-badge">3</span><span class="step-title">Comparte con tu cliente</span></h3>
+                            <p>Compartí el link o el QR por chat, WhatsApp, Facebook, Instagram o<br> incrustalo de forma permanente en tu sitio.</p><br>
+                            <div class="desktop-only">
+                                <p>Una vez creado tu link o QR, compartilo fácilmente por WhatsApp,<br> Messenger, Instagram, Facebook o correo electrónico.</p><br>
+
+                                <p>También podés incrustarlo de forma permanente en tu sitio web, en la sección de productos,<br> cursos o servicios, para que los clientes paguen sin necesidad de contacto directo.</p><br>
+
+                                <p>La simplicidad del sistema elimina fricciones: no necesitás perseguir pagos <br>ni explicar procesos complicados. Tus clientes reciben el link, hacen clic y listo.</p><br>
+
+                                <p>Además, podés reutilizar el mismo link o QR para suscripciones, servicios recurrentes o ventas frecuentes, ahorrando tiempo y esfuerzo.</p>
+                            </div>
+                        </div>
+                        <div class="slide-media">
+                               <img src="assets/images/Comparte con tu cliente.jpg" alt="Comparte con tu cliente" class="how-img" />
+                        </div>
+                    </article>
+
+                    <article class="slide" data-index="3" aria-roledescription="slide">
+                        <div class="slide-content">
+                            <h3><span class="step-badge">4</span><span class="step-title">Recibe en Woz Pay y retira en SIPAP</span></h3>
+                            <p>Recibí el dinero en tu billetera Woz Pay y programá la transferencia a tu banco local según tu necesidad de tiempo y costo.</p><br>
+                            <div class="desktop-only">
+                                <p>Todos los pagos llegan directamente a tu billetera digital Woz Pay, <br>donde podés visualizar tu saldo en tiempo real.</p><br>
+
+                                <p>Desde ahí, tenés el control total: programá la transferencia a tu banco local <br>según tu necesidad de tiempo y costo.</p><br>
+
+                                <p>Retiro inmediato: disponible con comisión preferencial, <br>ideal para quienes necesitan liquidez al instante.</p><br>
+
+                                <p>Retiro programado: opciones de 7, 14 o hasta 30 días, con comisiones más bajas<br> para quienes prefieren optimizar costos.</p><br>
+
+                                <p>La integración con el sistema SIPAP asegura que tus fondos<br> lleguen de manera segura y transparente a cualquier banco nacional.</p><br>
+
+                                <p>Podés manejar múltiples monedas (Gs, USD, EUR y más)<br> y organizar tus ingresos según proyectos, clientes o servicios.</p>
+                            </div>
+                        </div>
+                        <div class="slide-media">
+                               <img src="assets/images/Recibe en Woz Pay y retira en SIPAP.jpg" alt="Recibe en Woz Pay y retira en SIPAP" class="how-img" />
+                        </div>
+                    </article>
+                </div>
+
+                <button class="slider-btn next" aria-label="Siguiente">›</button>
+
+                <div class="slider-dots" role="tablist" aria-label="Paginación de pasos"></div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="problema" class="section">
+        <div class="container">
+            <h2>El desafío de cobrar internacionalmente en Paraguay</h2>
+            
+            <div class="grid problem-grid grid-3">
+                <div class="problem-card">
+                    <strong>Plataformas bloqueadas</strong>
+                    Plataformas de pagos y cobros internacionales que no pueden ingresar al pais por motivos regulatorios.
+                </div>
+                <div class="problem-card">
+                    <strong>Terciarizacion de remesas</strong>
+                    Servicios de remesas como Moneygram, Western Union que estan sujetas a las burocracias bancarias y a las comisiones de las mismas. 
+                </div>
+                <div class="problem-card">
+                    <strong>Pagar sí, cobrar no</strong>
+                    El uso limitado de las plataformas internacionales como Paypal para el pago de servicios pero no asi para el cobro de las mismas. 
+                </div>
+                <div class="problem-card">
+                    <strong>Cuentas corrientes - Swift </strong>
+                    Dificultad para abrir cuentas bancarias internacionales en USD o EUR para recibir pagos desde el exterior, asi como sus altas comisiones por transacción. 
+                </div>
+                <div class="problem-card">
+                    <strong>Imposibilidad de Recurrencia</strong>
+                    No puedes configurar cobros automáticos de suscripciones y servicios fijos a tus clientes.
+                </div>
+                <div class="problem-card">
+                    <strong>Costo alto de retiro</strong>
+                    Las opciones tradicionales aplican cargos excesivos solo por transferir el dinero a tu banco paraguayo.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="solucion" class="section">
+        <div class="container">
+            <h2>Woz Payments: Solución simple, para emprendedores</h2>
+            <div class="section-image" style="text-align: center;">
+                <img src="assets/images/wozqr.jpg" alt="Solución Woz Payments: ejemplo de QR y cobro" style="max-width: 100%; height: auto; border-radius: 12px;" />
+            </div>
+
+            <div class="solution-text" style="text-align: left;">
+                <strong>Pagos Internacionales:</strong> Recibí cobros desde cualquier país con tarjetas de crédito y débito. Ideal para freelancers y negocios con clientes en el exterior.<br><br>
+                <strong>Links y Códigos QR:</strong> Generá enlaces y QR únicos por venta para compartir por WhatsApp, redes sociales o tu sitio web. Simplifica el cobro sin integración compleja.<br><br>
+                <strong>Débito Automático:</strong> Activá cobros recurrentes para suscripciones mensuales o servicios fijos. Olvidate de perseguir pagos manuales.<br><br>
+                <strong>Retiros a Bancos Locales:</strong> Transferí tu saldo a cualquier cuenta bancaria nacional por SIPAP de forma segura y transparente.
+            </div>
+
+            <div class="cta-group left" style="margin-top: 20px;">
+                <a href="#" class="cta-button cta-primary" id="btn-open-woz-form">Genera un link de prueba</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="pymes" class="section">
+        <div class="container">
+            <h2>Herramientas avanzadas para emprendimientos</h2>
+            </div>
+            
+            <div class="grid tool-card-grid grid-4">
+                <div class="card tool-card">
+                    <h3>Préstamos a medida</h3>
+                    <p>Capital de trabajo flexible basado en el flujo de cobros constante de tu cuenta Woz, disponible para crecimiento inmediato.</p>
+                </div>
+                <div class="card tool-card">
+                    <h3>Botón de pago API</h3>
+                    <p>Integración técnica completa para incrustar cobros directos en tu tienda online o sistema propio con alta seguridad.</p>
+                </div>
+                <div class="card tool-card">
+                    <h3>Cobro vía WhatsApp</h3>
+                    <p>Cierra ventas de forma ágil enviando links de pago instantáneos por mensajería a tus clientes.</p>
+                </div>
+                <div class="card tool-card">
+                    <h3>Sistema centralizado</h3>
+                    <p>Controla todas tus ventas, retiros y reportes financieros desde un único panel intuitivo y completo.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="precios" class="section">
+      <div class="container">
+        <h2>Nuestras tarifas anuales de Woz Payments</h2>
+                <div class="pricing-carousel" id="pricingCarousel">
+                    <div class="pricing-tabs" role="tablist" aria-label="Planes">
+                        <button class="pricing-tab-button active" data-index="0" role="tab" aria-selected="true">Basico</button>
+                        <button class="pricing-tab-button" data-index="1" role="tab" aria-selected="false">Regular</button>
+                        <button class="pricing-tab-button" data-index="2" role="tab" aria-selected="false">Profesional</button>
+                    </div>
+                    <div class="carousel-track">
+            <!-- Básico -->
+            <div class="card-price pricing-card">
+              <h3>Principiante</h3>
+              <span class="price-amount">Gs. 250.000 <small>/Pago único</small><br><small>Ideal para principiantes</small></span>
+              <ul class="benefits-list">
+                <li>Cuenta básica</li>
+                <li>Hasta 5 links por mes</li>
+                <li>Hasta 5 QR por mes</li>
+                <li>Monedas Gs - USD</li>
+                <li>Hasta 100 USD por link o QR</li>
+                <li>Hasta 1.000 USD mensual en transacciones</li>
+                <li>Comisión del 15% + IVA</li>
+                <li>Proceso de acreditación 72hs</li>
+                <li>Desembolso dia lunes</li>
+                <li class="locked">Préstamos</li>
+                <li class="locked">Multi-dispositivos</li>
+              </ul>
+              <a href="#" class="cta-button cta-primary choose-plan" data-plan="Básico" data-amount="250000">Elegir este plan</a>
+            </div>
+                        <!-- Estándar -->
+                        <div class="card-price pricing-card">
+                            <div class="most-badge">Más adquirido</div>
+                            <h3>Emprendedor regular</h3>
+                                                        <span class="price-amount">Gs. 600.000 <small>/Pago único</small><br><small>Ideal para emprendedores regulares</small></span>
+              <ul class="benefits-list">
+                <li>Cuenta corriente</li>
+                <li>Hasta 30 links por mes</li>
+                <li>Hasta 30 QR por mes</li>
+                <li>Gs - USD - EUR</li>
+                <li>Hasta 1.000 USD por link o QR</li>
+                <li>Hasta 30.000 USD mensual en transacciones</li>
+                <li>Comisión del 5% + IVA</li>
+                <li>Préstamo hasta Gs. 100.000.000</li>
+                <li>Proceso de acreditación 24hs</li>
+                <li>Desembolso al instante</li>
+                <li>Soporte vía WhatsApp</li>
+                <li>Multi-dispositivos</li>
+                <li>Tasas preferenciales</li>
+              </ul>
+              <a href="#" class="cta-button cta-primary choose-plan" data-plan="Estándar" data-amount="600000">Elegir este plan</a>
+            </div>
+            <!-- Premium -->
+            <div class="card-price pricing-card">
+              <h3>Emprendedor Business</h3>
+              <span class="price-amount">Gs. 1.500.000 <small>/Pago único</small><br><small>Ideal para emprendedores establecidos</small></span>
+              <ul class="benefits-list">
+                <li>Cuenta corriente</li>
+                <li>links & QR ilimitados</li>
+                <li>+200 monedas</li>
+                <li>Hasta 10.000 USD por link o QR</li>
+                <li>Hasta 500.000 USD mensual en transacciones</li>
+                <li>Comisión del 3,9% + IVA</li>
+                <li>Préstamo hasta Gs. 600.000.000 a sola firma</li>
+                <li>Proceso de acreditación al instante</li>
+                <li>Desembolso al instante</li>
+                <li>Multi-dispositivos</li>
+                <li>Ejecutivo de cuentas asignado</li>
+                 <li>Boton de pago API Woz Pay</li>
+                <li>Paquete accionario de Woz Designs</li>
+              </ul>
+              <a href="#" class="cta-button cta-primary choose-plan" data-plan="Premium" data-amount="1500000">Elegir este plan</a>
+            </div>
+          </div>
+                </div>
+      </div>
+    </section>
+
+    <section id="tarifas" class="section">
+        <div class="container">
+            <h2>Tarifas claras y competitivas</h2>
+            
+            <div class="tarifas-layout">
+                <div class="tarifas-tables" style="width:100%">
+                    <div class="table-container">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Concepto</th>
+                                    <th>Tarifa</th>
+                                    <th>Desembolso</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Cobro internacional por transacción</td>
+                                    <td>Desde 3,9% + 1 USD</td>
+                                    <td>—</td>
+                                </tr>
+                                <tr>
+                                    <td>Retiro al instante</td>
+                                    <td>15 %</td>
+                                    <td>Retiro al instante</td>
+                                </tr>
+                                <tr>
+                                    <td>Retiro a 7 días</td>
+                                    <td>10 %</td>
+                                    <td>Rápido y fácil</td>
+                                </tr>
+                                <tr>
+                                    <td>Retiro a 14 días</td>
+                                    <td>8 %</td>
+                                    <td>Tu dinero espera</td>
+                                </tr>
+                                <tr>
+                                    <td>Retiro a 30 días</td>
+                                    <td>3,9 %</td>
+                                    <td>Comisiones más bajas</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="confianza" class="section" style="background-color: var(--color-bg-light);">
+        <div class="container">
+            <h2>Confianza y seguridad operativa</h2>
+
+            <div class="press-heading">
+                <div class="press-heading-inner">
+                    <svg class="press-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="2" y="4" width="20" height="14" rx="2" ry="2" fill="none" stroke="currentColor" stroke-width="1.4" />
+                        <path d="M6 8h8M6 11h12M6 14h6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+                    </svg>
+                    <div>
+                        <h3 class="press-main-title">Prensa</h3>
+                        <div class="press-subtitle">Holding con más de 10 años en el mercado</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="press-banner" aria-label="Prensa - nota relacionada a Woz Paraguay">
+                <a class="press-banner-link" href="https://www.lanacion.com.py/negocios/2021/01/12/emprendedores-ln-renuncio-a-todo-y-en-5-anos-consolido-woz-paraguay-sitio-de-comercio-digital/" target="_blank" rel="noopener noreferrer">
+                    <div class="press-banner-content">
+                        <div class="press-article">
+                            <h3 class="press-title"><span class="press-badge">Diario La Nacion</span></h3>
+                            <p class="press-copy">Renunció a todo y en 5 años consolidó Woz Paraguay, holding tecnológico. La nota relata el recorrido del fundador y las decisiones estratégicas que permitieron transformar una idea en una plataforma de comercio digital enfocada en emprendedores y pequeñas empresas paraguayas. Se detallan los primeros productos, alianzas clave, testimonios de clientes que migraron ventas al canal digital y los planes de expansión regional hacia el Cono Sur.</p>
+                        </div>
+                        <div class="press-actions">
+                            <span class="press-cta">Leer nota completa</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            </div>
+            <div class="grid confianza-grid grid-3">
+                <div class="card">
+                    <h3>Enfoque local</h3>
+                    <p>Somos una empresa paraguaya que entiende el mercado y las regulaciones locales, brindando soluciones específicas.</p>
+                </div>
+                <div class="card">
+                    <h3>Seguridad estándar</h3>
+                    <p>Usamos protocolos de cifrado y cumplimiento regulatorio avanzado para proteger tus fondos y datos personales.</p>
+                </div>
+                <div class="card">
+                    <h3>Soporte humano</h3>
+                    <p>Asistencia directa, rápida y en tu idioma para resolver cualquier incidencia de cobro o retiro de inmediato.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq" class="section">
+        <div class="container">
+            <h2>Preguntas frecuentes</h2>
+            <!-- FAQ Accordion -->
+<div class="faq-list">
+  <div class="faq-item">
+    <button class="faq-question">¿Cómo creo mi cuenta y verifico mi identidad?</button>
+    <div class="faq-answer">
+      Registrate y completá el KYC with tu Cédula paraguaya y una prueba de residencia. Para empresas, se requiere RUC y documentos del representante legal.
+    </div>
+  </div>
+  <div class="faq-item">
+    <button class="faq-question">¿Cuánto tarda la activación de la cuenta?</button>
+    <div class="faq-answer">
+      La activación es casi inmediata. La verificación suele completarse en menos de 24 horas.
+    </div>
+  </div>
+  <div class="faq-item">
+    <button class="faq-question">¿De qué países puedo recibir pagos?</button>
+    <div class="faq-answer">
+      Podés recibir pagos con tarjetas de crédito y débito de prácticamente cualquier país. La conversión de divisas se gestiona automáticamente.
+    </div>
+  </div>
+  <div class="faq-item">
+    <button class="faq-question">¿Cómo se calcula la comisión por transacción?</button>
+    <div class="faq-answer">
+      Se aplica el 5% del monto más 1 USD fijo por cada cobro internacional.
+    </div>
+  </div>
+  <div class="faq-item">
+    <button class="faq-question">¿Qué opciones de retiro tengo y cuáles son sus costos?</button>
+    <div class="faq-answer">
+      Podés retirar al instante (15%), a 7 días (10%), a 14 días (8%) o a 30 días (3,9%). Elegí según tu necesidad de liquidez.
+    </div>
+  </div>
+  <div class="faq-item">
+    <button class="faq-question">¿Puedo configurar cobros recurrentes por suscripciones?</button>
+    <div class="faq-answer">
+      Sí, activá el débito automático para cobrar suscripciones mensuales de forma segura y transparente.
+    </div>
+  </div>
+  <div class="faq-item">
+    <button class="faq-question">¿Cómo integro el botón de pago en mi web?</button>
+    <div class="faq-answer">
+      Disponemos de API y guías técnicas para insertar el botón de pago y generar links/QR personalizados.
+    </div>
+  </div>
+  <div class="faq-item">
+    <button class="faq-question">¿Qué tipo de soporte ofrecen?</button>
+    <div class="faq-answer">
+      Soporte prioritario para cuentas Pro y asistencia en español en horario local.
+    </div>
+  </div>
+</div>
+        </div>
+    </section>
+
+    <section id="cta-final" class="section" style="background-color: var(--color-primary); color: var(--color-secondary);">
+        <div class="container">
+            <h2 style="color: #fff;">Da el salto y recibí tus ganancias internacionales</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 40px; color: var(--color-secondary);">Únete a Woz Payments hoy y maximiza tus ganancias sin complicaciones.</p>
+
+            <div class="cta-group">
+                <a href="#" class="cta-button cta-primary" style="background-color: var(--color-secondary); color: var(--color-primary); border-color: var(--color-secondary);">Registrate desde 250.000 Gs anuales</a>
+            </div>
+        </div>
+    </section>
+
+        <footer style="padding: 25px; text-align: center; font-size: 0.8rem; color: var(--color-text-light); background-color: #2c3e50; color: #ecf0f1;">
+        <p>&copy; 2025 Woz Payments. Todos los derechos reservados.</p>
+    </footer>
+
+    <!-- Woz Payments Full-screen Form Modal -->
+    <div class="woz-modal-overlay" id="wozModal">
+        <div class="woz-modal">
+            <div class="woz-modal-header">
+                <span>Woz Payments</span>
+                <button class="woz-close-btn" id="wozClose">Cerrar</button>
+            </div>
+            <div class="woz-modal-body">
+                <div class="woz-form-row cols-2">
+                    <div class="woz-field woz-switch">
+                        <label>Selecciona tipo de cobro</label>
+                        <label><input type="radio" name="wozType" value="link" checked> Woz Payments Link</label>
+                        <label><input type="radio" name="wozType" value="qr"> Woz Payments QR</label>
+                    </div>
+                    <div class="woz-field">
+                        <label>Escoge</label>
+                        <select class="woz-select" id="wozCategory">
+                            <option value="ventas">Ventas</option>
+                            <option value="freelance">Freelance</option>
+                            <option value="suscripciones">Suscripciones</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="woz-form-row">
+                    <div class="woz-field">
+                        <label>Título de producto o servicio</label>
+                        <input type="text" class="woz-input" id="wozTitle" placeholder="Ej: Diseño de landing page" />
+                    </div>
+                </div>
+                <div class="woz-form-row cols-2">
+                    <div class="woz-field">
+                        <label>Precio en Gs</label>
+                        <input type="text" inputmode="numeric" pattern="[0-9\.]*" class="woz-input" id="wozPrice" placeholder="Ej: 250.000" />
+                    </div>
+                    <div class="woz-field">
+                        <label>Detalles</label>
+                        <textarea class="woz-textarea" id="wozDetails" placeholder="Describe la venta o servicio"></textarea>
+                    </div>
+                </div>
+                <div class="woz-form-row">
+                    <div class="woz-summary" id="wozSummary">
+                        <div class="woz-summary-card">
+                            <div class="woz-summary-header">Resumen</div>
+                            <div class="woz-summary-row">
+                                <span class="woz-summary-title">Comisión Woz Payments</span>
+                                <span class="woz-summary-value" id="wozFeePercentAmount">Gs. —</span>
+                            </div>
+                            <div class="woz-summary-row">
+                                <span class="woz-summary-title">Comisión por transacción</span>
+                                <span class="woz-summary-value" id="wozFeeTransAmount">Gs. —</span>
+                            </div>
+                            <div class="woz-summary-row total">
+                                <span class="woz-summary-title">Total a cobrar</span>
+                                <span class="woz-summary-value" id="wozTotalAmount">Gs. —</span>
+                            </div>
+                            <div class="woz-link-out" id="wozLinkOut"></div>
+                        </div>
+                    </div>
+                    <div id="wozQR" class="woz-qr"></div>
+                </div>
+            </div>
+            <div class="woz-modal-footer">
+                <button class="cta-button cta-primary" id="wozGenerate">Generar link o QR</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading overlay -->
+    <div class="woz-loading" id="wozLoading" aria-hidden="true">
+        <div class="woz-loading-content">Generando…</div>
+    </div>
+
+    <!-- Floating result message -->
+    <div class="woz-floating" id="wozFloating" aria-hidden="true">
+        <div class="woz-floating-card compact">
+            <div class="woz-floating-body" id="wozFloatingBody"></div>
+            <div class="woz-floating-actions" style="padding: 12px 16px;">
+                <button class="cta-button cta-primary" id="wozFloatingCloseBottom">Cerrar</button>
+            </div>
+        </div>
+        <button class="woz-close-btn" id="wozFloatingClose" style="position:absolute;top:12px;right:12px;background:#fff;color:#333;border:1px solid #ddd;border-radius:8px;padding:6px 10px;">Cerrar</button>
+    </div>
+        <!-- Payment Methods Modal (select how to pay) -->
+        <div class="woz-modal-overlay payment-methods-overlay" id="paymentMethodsModal" aria-hidden="true">
+            <div class="woz-modal">
+                <div class="woz-modal-header">
+                    <span class="pm-modal-title">Escoge tu método de pago</span>
+                    <button class="woz-close-btn" id="pmClose">Cerrar</button>
+                </div>
+                <div class="woz-modal-body">
+                        <div class="pm-intro">Seleccioná cómo querés pagar</div>
+                        <div class="pm-price">
+                            <span class="pm-price-label">Precio total</span>
+                            <strong class="pm-total">Gs. —</strong>
+                        </div>
+                        <div class="pm-options">
+                            <div class="pm-group-title" style="margin-top:0; font-weight:600;">Pago por transferencia bancaria</div>
+                            <!-- Beneficios dentro de un cuadro anaranjado muy claro (pequeño) -->
+                            <div class="pm-benefits-box">
+                                <div class="pm-benefits-title">Beneficios de pagar via transferencia</div>
+                                <ul class="pm-benefits" aria-label="Beneficios">
+                                    <li><span class="pm-benefit-icon">✓</span><span>Libre de comision bancaria</span></li>
+                                    <li><span class="pm-benefit-icon">✓</span><span>Pagos al titular de Woz Payments</span></li>
+                                    <li><span class="pm-benefit-icon">✓</span><span>Contacto principal con el dueño</span></li>
+                                    <li><span class="pm-benefit-icon">✓</span><span>Asesoria personalizada</span></li>
+                                    <li><span class="pm-benefit-icon">✓</span><span>Seguridad bancaria</span></li>
+                                </ul>
+                            </div>
+                            <div class="pm-option" data-method="transfer" role="button" tabindex="0">
+                                <span class="pm-content">
+                                    <strong>Transferencia bancaria</strong>
+                                    <div class="pm-sub">Comisión de 0%</div>
+                                    <div class="pm-processor">Bancos: Sudameris Bank - Ueno Bank</div>
+                                </span>
+                                <span class="pm-check" aria-hidden="true"></span>
+                            </div>
+
+                            <div class="pm-other-title">Otros métodos de pago</div>
+                            <div class="pm-group-title" style="margin-top:10px; font-weight:600;">Tarjeta de crédito - debito</div>
+                            <div class="pm-option" data-method="card" role="button" tabindex="0">
+                                <span class="pm-content">
+                                    <strong>Tarjeta de crédito - debito</strong>
+                                    <div class="pm-sub">Comisión 5,5% + IVA 10%</div>
+                                    <div class="pm-processor">Procesadora: Bancard</div>
+                                </span>
+                                <span class="pm-check" aria-hidden="true"></span>
+                            </div>
+
+                            <div class="pm-group-title" style="margin-top:10px; font-weight:600;">Billetera</div>
+                            <div class="pm-option" data-method="personalpay" role="button" tabindex="0">
+                                <span class="pm-content">
+                                    <strong>Personal Pay</strong>
+                                    <div class="pm-sub">Comisión 5,5% + IVA 10%</div>
+                                    <div class="pm-processor">Procesadora: Personal Pay</div>
+                                </span>
+                                <span class="pm-check" aria-hidden="true"></span>
+                            </div>
+
+                            <div class="pm-option" data-method="tigomoney" role="button" tabindex="0">
+                                <span class="pm-content">
+                                    <strong>Tigo Money</strong>
+                                    <div class="pm-sub">Comisión 5,5% + IVA 10%</div>
+                                    <div class="pm-processor">Procesadora: Tigo Money</div>
+                                </span>
+                                <span class="pm-check" aria-hidden="true"></span>
+                            </div>
+
+                            <div class="pm-option" data-method="wally" role="button" tabindex="0">
+                                <span class="pm-content">
+                                    <strong>Wally</strong>
+                                    <div class="pm-sub">Comisión 5,5% + IVA 10%</div>
+                                    <div class="pm-processor">Procesadora: Bancard</div>
+                                </span>
+                                <span class="pm-check" aria-hidden="true"></span>
+                            </div>
+
+                            <div class="pm-option" data-method="zimple" role="button" tabindex="0">
+                                <span class="pm-content">
+                                    <strong>Zimple</strong>
+                                    <div class="pm-sub">Comisión 5,5% + IVA 10%</div>
+                                    <div class="pm-processor">Procesadora: Bancard</div>
+                                </span>
+                                <span class="pm-check" aria-hidden="true"></span>
+                            </div>
+
+                            
+                        </div>
+                        <div class="woz-modal-footer" style="margin-top:12px; display:flex; justify-content:flex-end; gap:8px;">
+                            <button class="cta-button cta-primary" id="pmPayBtn" disabled>Pagar</button>
+                        </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Plan Payment Modal (QR + Bank selection) -->
+        <div class="plan-pay-overlay" id="planPayModal" aria-hidden="true">
+            <div class="plan-pay-modal">
+                <div class="plan-pay-header">
+                    <strong id="ppmTitle">Pago de membresía</strong>
+                    <button class="woz-close-btn" id="ppmClose">Cerrar</button>
+                </div>
+                <div class="plan-pay-body">
+                    <div class="ppm-row">
+                        <div class="ppm-summary">
+                            <div class="ppm-summary-left">
+                                <div class="ppm-plan">Plan:</div>
+                                <div class="ppm-amount">Monto:</div>
+                            </div>
+                            <div class="ppm-summary-right">
+                                <div class="ppm-plan-value"><span id="ppmPlanName">-</span></div>
+                                <div class="ppm-amount-value"><span id="ppmAmount">Gs. —</span></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="ppm-row banks-row">
+                        <label class="ppm-section-title">Escoge a que cuenta pagar</label>
+                        <div class="bank-selector">
+                            <div class="bank-selector-header">Selecciona una cuenta bancaria</div>
+                            <div class="bank-list">
+                                <div class="bank-item" data-bank="Ueno Bank" data-alias="4920791" id="bankUeno">Ueno Bank</div>
+                                <div class="bank-item" data-bank="Sudameris Bank" data-alias="0983994268" id="bankSudameris">Sudameris Bank</div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="ppm-row alias-row">
+                        <div class="ppm-info-box">
+                            <label class="ppm-section-title info-title">Información</label>
+                            <div class="ppm-info">
+                                <div class="ppm-info-left">
+                                    <div class="ppm-info-row">Titular</div>
+                                    <div class="ppm-info-row alias-label">Alias bancario</div>
+                                    <div class="ppm-info-row">Banco</div>
+                                    <div class="ppm-info-row">Monto</div>
+                                </div>
+                                <div class="ppm-info-right">
+                                    <div class="ppm-info-row">Héctor Gonzalez</div>
+                                    <div class="ppm-info-row" style="display:flex; justify-content:flex-end; align-items:center; gap:8px;"><span id="infoAliasVal">-</span><button id="ppmCopyAlias" class="ppm-copy-btn" aria-label="Copiar Alias">📋</button></div>
+                                    <div class="ppm-info-row"><span id="infoBancoVal">-</span></div>
+                                    <div class="ppm-info-row"><span id="infoMontoVal">-</span></div>
+                                    <div id="infoVisual" style="margin-top:8px;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- QR / Detalle removed per design request; visual content will appear inside infoVisual for Eko -->
+
+                    <div class="ppm-row actions-row">
+                        <button class="cta-button cta-primary" id="ppmSendReceipt">Enviar comprobante</button>
+                    </div>
+                    <div style="text-align:center; margin-top:8px;">
+                        <p class="ppm-note" style="font-size:0.85rem; color:#344155; opacity:0.9; margin:6px 0 0;">Un ejecutivo se comunicará contigo luego del pago</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <script src="wozpayments.js"></script>
+    <!-- QRCode library for generating QR codes -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script>
+document.querySelectorAll('.faq-question').forEach(btn => {
+  btn.addEventListener('click', function() {
+    // Cierra otros
+    document.querySelectorAll('.faq-question').forEach(b => {
+      if (b !== btn) {
+        b.classList.remove('active');
+        b.nextElementSibling.style.display = 'none';
+      }
+    });
+    // Toggle actual
+    btn.classList.toggle('active');
+    const answer = btn.nextElementSibling;
+    answer.style.display = btn.classList.contains('active') ? 'block' : 'none';
+  });
+});
+</script>
+    <script>
+    (function(){
+        const slider = document.querySelector('.steps-slider');
+        if (!slider) return;
+
+        const slides = Array.from(slider.querySelectorAll('.slide'));
+        const prevBtn = slider.querySelector('.slider-btn.prev');
+        const nextBtn = slider.querySelector('.slider-btn.next');
+        const dotsContainer = slider.querySelector('.slider-dots');
+        let idx = 0;
+
+        function buildDots(){
+            if (!dotsContainer) return;
+            dotsContainer.innerHTML = '';
+            slides.forEach((s,i)=>{
+                const b = document.createElement('button');
+                b.type = 'button';
+                b.className = 'dot';
+                b.setAttribute('aria-label', 'Paso ' + (i+1));
+                b.dataset.index = String(i);
+                b.addEventListener('click', ()=>{ show(i); idx = i; });
+                dotsContainer.appendChild(b);
+            });
+        }
+
+        function updateDots(){
+            if (!dotsContainer) return;
+            const dots = Array.from(dotsContainer.children);
+            dots.forEach((d,i)=> d.classList.toggle('active', i===idx));
+        }
+
+        function show(i){
+            idx = Math.max(0, Math.min(i, slides.length-1));
+            slides.forEach((s,j)=>{
+                const active = j === idx;
+                s.classList.toggle('active', active);
+                s.setAttribute('aria-hidden', active ? 'false' : 'true');
+            });
+            updateDots();
+        }
+
+        prevBtn?.addEventListener('click', () => { show((idx - 1 + slides.length) % slides.length); resetAutoplay(); });
+        nextBtn?.addEventListener('click', () => { show((idx + 1) % slides.length); resetAutoplay(); });
+
+        // swipe support
+        let startX = 0;
+        slider.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, {passive:true});
+        slider.addEventListener('touchend', e => {
+            const dx = e.changedTouches[0].clientX - startX;
+            if (dx < -40) nextBtn?.click();
+            if (dx > 40) prevBtn?.click();
+        });
+
+        // keyboard navigation
+        slider.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') prevBtn?.click();
+            if (e.key === 'ArrowRight') nextBtn?.click();
+        });
+
+        // Autoplay: loop continuously and be slightly faster for better feel
+        const AUTOPLAY_DELAY = 2400; // faster cadence
+        let autoplayInterval = null;
+        let autoplayPaused = false;
+
+        function nextSlide(){
+            show((idx + 1) % slides.length);
+        }
+
+        function startAutoplay(){
+            if (autoplayInterval || autoplayPaused) return;
+            autoplayInterval = setInterval(nextSlide, AUTOPLAY_DELAY);
+        }
+
+        function stopAutoplay(){ if (autoplayInterval){ clearInterval(autoplayInterval); autoplayInterval = null; } }
+        function pauseAutoplay(){ autoplayPaused = true; stopAutoplay(); }
+        function resumeAutoplay(){ autoplayPaused = false; startAutoplay(); }
+        function resetAutoplay(){ stopAutoplay(); startAutoplay(); }
+
+        slider.addEventListener('mouseenter', pauseAutoplay);
+        slider.addEventListener('mouseleave', resumeAutoplay);
+        slider.addEventListener('focusin', pauseAutoplay);
+        slider.addEventListener('focusout', resumeAutoplay);
+        // touch: pause during interaction and resume shortly after
+        slider.addEventListener('touchstart', () => { pauseAutoplay(); }, {passive:true});
+        slider.addEventListener('touchend', () => { setTimeout(resumeAutoplay, 700); }, {passive:true});
+
+        document.addEventListener('DOMContentLoaded', () => {
+            buildDots();
+            show(0);
+            // make slider focusable for keyboard navigation
+            slider.setAttribute('tabindex', '0');
+            // start autoplay
+            startAutoplay();
+        });
+
+        window.addEventListener('resize', () => show(idx));
+    })();
+    </script>
+</body>
+</html>
