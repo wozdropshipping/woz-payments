@@ -32,11 +32,13 @@ document.addEventListener('DOMContentLoaded', function() {
 		const ppmAmount = document.getElementById('ppmAmount');
 		const bankAccs = Array.from(document.querySelectorAll('.bank-item'));
 		const ppmAlias = null; // alias input removed; kept for compatibility
-		const ppmCopy = null;
+		const ppmCopy = document.getElementById('ppmCopyAlias');
+		const ppmTitle = document.getElementById('ppmTitle');
 		const infoAliasVal = document.getElementById('infoAliasVal');
 		const infoBancoVal = document.getElementById('infoBancoVal');
 		const infoMontoVal = document.getElementById('infoMontoVal');
 		const aliasLabel = document.querySelector('.ppm-info-left .alias-label');
+        const bancoLabel = document.querySelectorAll('.ppm-info-left .ppm-info-row')[2];
 		const bankSelector = document.querySelector('.bank-selector');
 		const bankSelectorHeader = document.querySelector('.bank-selector-header');
 		const infoVisual = document.getElementById('infoVisual');
@@ -45,13 +47,51 @@ document.addEventListener('DOMContentLoaded', function() {
 
 		let current = { plan:'', amount:0, bank:'Ueno Bank', alias:'4920791', color:'#0a7d3b' };
 
-		function openModalWith(plan, amount){
+		// Calcula el total para métodos de billetera: +5.5% de comisión y 10% sobre esa comisión (IVA)
+		function computeWalletTotal(amount){
+			const commission = Math.round(amount * 0.055);
+			const iva = Math.round(commission * 0.10);
+			return amount + commission + iva;
+		}
+
+		function openModalWith(plan, amount, walletMethod){
 			current.plan = plan;
 			current.amount = Number(amount) || 0;
+			current.walletMethod = walletMethod || null;
 			const defaultBankBtn = document.getElementById('bankUeno');
-			selectBank(defaultBankBtn);
+			// Only select default bank when not opening modal for a wallet method
+			if (!current.walletMethod) selectBank(defaultBankBtn);
 			if (ppmPlanName) ppmPlanName.textContent = plan;
-			if (ppmAmount) ppmAmount.textContent = formatGsLocal(current.amount);
+
+			// If opening for a wallet, show the inflated total
+			const displayAmount = (current.walletMethod === 'personalpay' || current.walletMethod === 'tigomoney')
+				? computeWalletTotal(current.amount)
+				: current.amount;
+
+			if (ppmAmount) ppmAmount.textContent = formatGsLocal(displayAmount);
+			// adjust UI when opening modal for wallet methods
+			if (current.walletMethod === 'personalpay' || current.walletMethod === 'tigomoney') {
+				if (bankSelector) bankSelector.style.display = 'none';
+				if (aliasLabel) {
+					if (current.walletMethod === 'personalpay') aliasLabel.textContent = 'Linea Personal Pay';
+					else aliasLabel.textContent = 'Linea Tigo';
+				}
+				if (bancoLabel) bancoLabel.textContent = 'Telefonia';
+				if (infoAliasVal) infoAliasVal.textContent = (current.walletMethod === 'personalpay') ? '0974 141073' : '0984261043';
+				if (infoBancoVal) infoBancoVal.textContent = (current.walletMethod === 'personalpay') ? 'Personal' : 'Tigo Paraguay';
+				if (infoMontoVal) infoMontoVal.textContent = formatGsLocal(displayAmount);
+				if (ppmTitle) ppmTitle.textContent = (current.walletMethod === 'personalpay') ? 'Pago por Personal Pay' : 'Pago por Tigo Money';
+				if (infoVisual) infoVisual.innerHTML = '';
+			} else {
+				if (bankSelector) bankSelector.style.display = '';
+				if (aliasLabel) aliasLabel.textContent = `Alias ${current.bank}`;
+				if (bancoLabel) bancoLabel.textContent = 'Banco';
+				if (infoAliasVal) infoAliasVal.textContent = current.alias || (current.bank === 'Eko' ? 'QR - Eko' : '-');
+				if (infoBancoVal) infoBancoVal.textContent = current.bank;
+				if (infoMontoVal) infoMontoVal.textContent = formatGsLocal(current.amount);
+				if (ppmTitle) ppmTitle.textContent = 'Pago de membresía';
+			}
+
 			modal?.classList.add('active');
 			renderQR();
 		}
@@ -91,6 +131,21 @@ document.addEventListener('DOMContentLoaded', function() {
 		function renderQR(){
 			if (!ppmQR) return;
 			ppmQR.innerHTML = '';
+			// If this modal is being used for wallet methods, show wallet-specific info
+			if (current.walletMethod === 'personalpay' || current.walletMethod === 'tigomoney') {
+				const displayAmount = computeWalletTotal(current.amount);
+				const div = document.createElement('div');
+				div.style.fontWeight = '600';
+				div.style.whiteSpace = 'pre-wrap';
+				div.style.textAlign = 'left';
+				if (current.walletMethod === 'personalpay') {
+					div.textContent = `Titular: Héctor Gonzalez\nLinea: 0974 141073\nTelefonia: Personal\nMonto: ${formatGsLocal(displayAmount)}`;
+				} else {
+					div.textContent = `Titular: Héctor Gonzalez\nLinea: 0984261043\nTelefonia: Tigo Paraguay\nMonto: ${formatGsLocal(displayAmount)}`;
+				}
+				ppmQR.appendChild(div);
+				return;
+			}
 
 			// If selected bank is Eko, show the provided Eko image (if present) and also the alias label set to QR - Eko
 			if (current.bank === 'Eko') {
@@ -105,6 +160,7 @@ document.addEventListener('DOMContentLoaded', function() {
 				return;
 			}
 
+
 			// For other banks, do not show an image QR — instead show a compact textual block with details
 			const infoPre = document.createElement('pre');
 			infoPre.style.whiteSpace = 'pre-wrap';
@@ -115,11 +171,11 @@ document.addEventListener('DOMContentLoaded', function() {
 		}
 
 		function copyAlias(){
-			const text = ppmAlias?.value || '';
+			const text = infoAliasVal ? infoAliasVal.textContent.trim() : '';
 			if (!text) return;
 			navigator.clipboard?.writeText(text).then(() => {
-				if (ppmCopy) { ppmCopy.textContent = 'Copiado'; setTimeout(()=> ppmCopy.textContent = 'Copiar', 1500); }
-			}).catch(()=>{ if (ppmCopy) { ppmCopy.textContent = 'Error'; setTimeout(()=> ppmCopy.textContent = 'Copiar', 1500); } });
+				if (ppmCopy) { ppmCopy.textContent = 'Copiado'; setTimeout(()=> ppmCopy.textContent = '📋', 1500); }
+			}).catch(()=>{ if (ppmCopy) { ppmCopy.textContent = 'Error'; setTimeout(()=> ppmCopy.textContent = '📋', 1500); } });
 		}
 
 		function sendReceipt(){
@@ -192,9 +248,26 @@ document.addEventListener('DOMContentLoaded', function() {
 			btn.addEventListener('click', function(e){
 				e.preventDefault();
 				const plan = btn.getAttribute('data-plan') || 'Plan';
-				const rawAmount = (btn.getAttribute('data-amount') || '0').toString();
-				const normalized = rawAmount.replace(/[^0-9]/g, '');
-				const amount = parseInt(normalized || '0', 10) || 0;
+				// Prefer monthly price when the toggle is set to monthly. Fall back to data-amount (annual) otherwise.
+				let amount = 0;
+				try {
+					const card = btn.closest('.pricing-card') || btn.closest('.card-price');
+					const monthlyBtn = document.getElementById('payMonthly');
+					const isMonthly = monthlyBtn ? (monthlyBtn.getAttribute('aria-pressed') === 'true' || monthlyBtn.classList.contains('active')) : false;
+					if (isMonthly && card && card.dataset && card.dataset.monthly) {
+						amount = parseInt(String(card.dataset.monthly).replace(/[^0-9]/g,''), 10) || 0;
+					} else if (card && card.dataset && card.dataset.annual) {
+						amount = parseInt(String(card.dataset.annual).replace(/[^0-9]/g,''), 10) || 0;
+					} else {
+						const rawAmount = (btn.getAttribute('data-amount') || '0').toString();
+						const normalized = rawAmount.replace(/[^0-9]/g, '');
+						amount = parseInt(normalized || '0', 10) || 0;
+					}
+				} catch(err) {
+					const rawAmount = (btn.getAttribute('data-amount') || '0').toString();
+					const normalized = rawAmount.replace(/[^0-9]/g, '');
+					amount = parseInt(normalized || '0', 10) || 0;
+				}
 				openMethodsModal(plan, amount);
 			});
 		});
@@ -202,16 +275,24 @@ document.addEventListener('DOMContentLoaded', function() {
 		function updateForMethod(method) {
 			if (!methodsModal) return;
 			if (!method) { resetMethodsUI(); return; }
-			// No realizar cálculos: mostrar monto base o total forzado si existe
+			// Decide total to show: transfer -> base, wallets -> computed, others -> override table when available
 			let total = current.amount;
-			if (method !== 'transfer') {
+			if (method === 'personalpay' || method === 'tigomoney') {
+				total = computeWalletTotal(current.amount);
+			} else if (method !== 'transfer') {
 				const forced = OVERRIDE_TOTALS[String(current.amount)] || OVERRIDE_TOTALS[current.amount];
 				if (forced) total = forced;
 			}
 			if (pmTotalEl) pmTotalEl.innerHTML = formatGsLocal(total);
 			if (pmPayBtn) {
 				pmPayBtn.disabled = false;
-				pmPayBtn.textContent = (method === 'transfer') ? 'Ver datos bancarios' : 'Pagar';
+				if (method === 'transfer') {
+					pmPayBtn.textContent = 'Ver datos bancarios';
+				} else if (method === 'personalpay' || method === 'tigomoney') {
+					pmPayBtn.textContent = 'Ver información de pago';
+				} else {
+					pmPayBtn.textContent = 'Pagar';
+				}
 			}
 			return { total };
 		}
@@ -299,21 +380,25 @@ document.addEventListener('DOMContentLoaded', function() {
 
 		// Pay / View bank details button
 		pmPayBtn?.addEventListener('click', function(){
-			if (!selectedMethod) return;
-			if (selectedMethod === 'transfer') {
-				// Open bank transfer modal with same plan/amount
+			// determine selected method from DOM to avoid duplicated-state issues
+			const domSelected = methodsModal?.querySelector('.pm-option.selected');
+			const method = domSelected?.getAttribute('data-method') || selectedMethod;
+			if (!method) return;
+			if (method === 'transfer') {
 				closeMethodsModal();
 				openModalWith(current.plan, current.amount);
 				return;
 			}
-			// Non-transfer methods: redirect to dpago purchase page (same URL for all methods)
-			// Use forced total if configured for this base amount; otherwise compute fallback total
+			if (method === 'personalpay' || method === 'tigomoney') {
+				closeMethodsModal();
+				openModalWith(current.plan, current.amount, method);
+				return;
+			}
 			const forced = OVERRIDE_TOTALS[String(current.amount)] || OVERRIDE_TOTALS[current.amount];
-			// Use forced total if available, otherwise send base amount (no calculations)
 			const totalToSend = forced || current.amount;
 			const base = 'https://pago.dpago.com/producto/comprar/5fbb-recarga-de-saldo-anual';
 			const params = new URLSearchParams({
-				method: selectedMethod,
+				method: method,
 				plan: current.plan,
 				amount: String(current.amount),
 				total: String(totalToSend)
@@ -1135,6 +1220,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		const infoBancoVal = document.getElementById('infoBancoVal');
 		const infoMontoVal = document.getElementById('infoMontoVal');
 		const aliasLabel = document.querySelector('.ppm-info-left .alias-label');
+		const bancoLabel = document.querySelectorAll('.ppm-info-left .ppm-info-row')[2];
 		const bankSelector = document.querySelector('.bank-selector');
 		const bankSelectorHeader = document.querySelector('.bank-selector-header');
 		const infoVisual = document.getElementById('infoVisual');
@@ -1143,13 +1229,50 @@ document.addEventListener('DOMContentLoaded', function() {
 
 		let current = { plan:'', amount:0, bank:'Ueno Bank', alias:'4920791', color:'#0a7d3b' };
 
-		function openModalWith(plan, amount){
+		// Calcula el total para métodos de billetera: +5.5% de comisión y 10% sobre esa comisión (IVA)
+		function computeWalletTotal(amount){
+			const commission = Math.round(amount * 0.055);
+			const iva = Math.round(commission * 0.10);
+			return amount + commission + iva;
+		}
+
+		function openModalWith(plan, amount, walletMethod){
 			current.plan = plan;
 			current.amount = Number(amount) || 0;
+			current.walletMethod = walletMethod || null;
 			const defaultBankBtn = document.getElementById('bankUeno');
-			selectBank(defaultBankBtn);
+			// Only select default bank when not opening modal for a wallet method
+			if (!current.walletMethod) selectBank(defaultBankBtn);
 			if (ppmPlanName) ppmPlanName.textContent = plan;
-			if (ppmAmount) ppmAmount.textContent = formatGsLocal(current.amount);
+
+			const displayAmount = (current.walletMethod === 'personalpay' || current.walletMethod === 'tigomoney')
+				? computeWalletTotal(current.amount)
+				: current.amount;
+
+			if (ppmAmount) ppmAmount.textContent = formatGsLocal(displayAmount);
+			// adjust UI when opening modal for wallet methods
+			if (current.walletMethod === 'personalpay' || current.walletMethod === 'tigomoney') {
+				if (bankSelector) bankSelector.style.display = 'none';
+				if (aliasLabel) {
+					if (current.walletMethod === 'personalpay') aliasLabel.textContent = 'Linea Personal Pay';
+					else aliasLabel.textContent = 'Linea Tigo';
+				}
+				if (bancoLabel) bancoLabel.textContent = 'Telefonia';
+				if (infoAliasVal) infoAliasVal.textContent = (current.walletMethod === 'personalpay') ? '0974 141073' : '0984261043';
+				if (infoBancoVal) infoBancoVal.textContent = (current.walletMethod === 'personalpay') ? 'Personal' : 'Tigo Paraguay';
+				if (infoMontoVal) infoMontoVal.textContent = formatGsLocal(displayAmount);
+				if (ppmTitle) ppmTitle.textContent = (current.walletMethod === 'personalpay') ? 'Pago por Personal Pay' : 'Pago por Tigo Money';
+				if (infoVisual) infoVisual.innerHTML = '';
+			} else {
+				if (bankSelector) bankSelector.style.display = '';
+				if (aliasLabel) aliasLabel.textContent = `Alias ${current.bank}`;
+				if (bancoLabel) bancoLabel.textContent = 'Banco';
+				if (infoAliasVal) infoAliasVal.textContent = current.alias || (current.bank === 'Eko' ? 'QR - Eko' : '-');
+				if (infoBancoVal) infoBancoVal.textContent = current.bank;
+				if (infoMontoVal) infoMontoVal.textContent = formatGsLocal(current.amount);
+				if (ppmTitle) ppmTitle.textContent = 'Pago de membresía';
+			}
+
 			modal?.classList.add('active');
 			renderQR();
 		}
@@ -1213,11 +1336,11 @@ document.addEventListener('DOMContentLoaded', function() {
 		}
 
 		function copyAlias(){
-			const text = ppmAlias?.value || '';
+			const text = infoAliasVal ? infoAliasVal.textContent.trim() : '';
 			if (!text) return;
 			navigator.clipboard?.writeText(text).then(() => {
-				if (ppmCopy) { ppmCopy.textContent = 'Copiado'; setTimeout(()=> ppmCopy.textContent = 'Copiar', 1500); }
-			}).catch(()=>{ if (ppmCopy) { ppmCopy.textContent = 'Error'; setTimeout(()=> ppmCopy.textContent = 'Copiar', 1500); } });
+				if (ppmCopy) { ppmCopy.textContent = 'Copiado'; setTimeout(()=> ppmCopy.textContent = '📋', 1500); }
+			}).catch(()=>{ if (ppmCopy) { ppmCopy.textContent = 'Error'; setTimeout(()=> ppmCopy.textContent = '📋', 1500); } });
 		}
 
 		function sendReceipt(){
@@ -1285,9 +1408,26 @@ document.addEventListener('DOMContentLoaded', function() {
 			btn.addEventListener('click', function(e){
 				e.preventDefault();
 				const plan = btn.getAttribute('data-plan') || 'Plan';
-				const rawAmount = (btn.getAttribute('data-amount') || '0').toString();
-				const normalized = rawAmount.replace(/[^0-9]/g, '');
-				const amount = parseInt(normalized || '0', 10) || 0;
+				// Prefer monthly price when the toggle is set to monthly. Fall back to data-amount (annual) otherwise.
+				let amount = 0;
+				try {
+					const card = btn.closest('.pricing-card') || btn.closest('.card-price');
+					const monthlyBtn = document.getElementById('payMonthly');
+					const isMonthly = monthlyBtn ? (monthlyBtn.getAttribute('aria-pressed') === 'true' || monthlyBtn.classList.contains('active')) : false;
+					if (isMonthly && card && card.dataset && card.dataset.monthly) {
+						amount = parseInt(String(card.dataset.monthly).replace(/[^0-9]/g,''), 10) || 0;
+					} else if (card && card.dataset && card.dataset.annual) {
+						amount = parseInt(String(card.dataset.annual).replace(/[^0-9]/g,''), 10) || 0;
+					} else {
+						const rawAmount = (btn.getAttribute('data-amount') || '0').toString();
+						const normalized = rawAmount.replace(/[^0-9]/g, '');
+						amount = parseInt(normalized || '0', 10) || 0;
+					}
+				} catch(err) {
+					const rawAmount = (btn.getAttribute('data-amount') || '0').toString();
+					const normalized = rawAmount.replace(/[^0-9]/g, '');
+					amount = parseInt(normalized || '0', 10) || 0;
+				}
 				openMethodsModal(plan, amount);
 			});
 		});
@@ -1295,16 +1435,24 @@ document.addEventListener('DOMContentLoaded', function() {
 		function updateForMethod(method) {
 			if (!methodsModal) return;
 			if (!method) { resetMethodsUI(); return; }
-			// No realizar cálculos: mostrar monto base o total forzado si existe
+			// Decide total to show: transfer -> base, wallets -> computed, others -> override table when available
 			let total = current.amount;
-			if (method !== 'transfer') {
+			if (method === 'personalpay' || method === 'tigomoney') {
+				total = computeWalletTotal(current.amount);
+			} else if (method !== 'transfer') {
 				const forced = OVERRIDE_TOTALS[String(current.amount)] || OVERRIDE_TOTALS[current.amount];
 				if (forced) total = forced;
 			}
 			if (pmTotalEl) pmTotalEl.textContent = formatGsLocal(total);
 			if (pmPayBtn) {
 				pmPayBtn.disabled = false;
-				pmPayBtn.textContent = (method === 'transfer') ? 'Ver datos bancarios' : 'Pagar';
+				if (method === 'transfer') {
+					pmPayBtn.textContent = 'Ver datos bancarios';
+				} else if (method === 'personalpay' || method === 'tigomoney') {
+					pmPayBtn.textContent = 'Ver información de pago';
+				} else {
+					pmPayBtn.textContent = 'Pagar';
+				}
 			}
 			return { total };
 		}
@@ -1337,20 +1485,25 @@ document.addEventListener('DOMContentLoaded', function() {
 
 		// Pay / View bank details button
 		pmPayBtn?.addEventListener('click', function(){
-			if (!selectedMethod) return;
-			if (selectedMethod === 'transfer') {
-				// Open bank transfer modal with same plan/amount
+			// determine selected method from DOM to avoid duplicated-state issues
+			const domSelected = methodsModal?.querySelector('.pm-option.selected');
+			const method = domSelected?.getAttribute('data-method') || selectedMethod;
+			if (!method) return;
+			if (method === 'transfer') {
 				closeMethodsModal();
 				openModalWith(current.plan, current.amount);
 				return;
 			}
-			// Non-transfer methods: redirect to dpago purchase page (same URL for all methods)
-			// Use forced total if configured, otherwise use base amount (no calculations)
+			if (method === 'personalpay' || method === 'tigomoney') {
+				closeMethodsModal();
+				openModalWith(current.plan, current.amount, method);
+				return;
+			}
 			const forced = OVERRIDE_TOTALS[String(current.amount)] || OVERRIDE_TOTALS[current.amount];
 			const totalToSend = forced || current.amount;
 			const base = 'https://pago.dpago.com/producto/comprar/5fbb-recarga-de-saldo-anual';
 			const params = new URLSearchParams({
-				method: selectedMethod,
+				method: method,
 				plan: current.plan,
 				amount: String(current.amount),
 				total: String(totalToSend)
