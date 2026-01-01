@@ -280,6 +280,12 @@
     <section id="precios" class="section">
       <div class="container">
         <h2>Nuestras tarifas anuales de Woz Payments</h2>
+                <div class="payment-toggle-wrapper" style="display:flex; justify-content:center;">
+                    <div class="payment-toggle">
+                            <button type="button" class="pay-toggle-btn active" id="payAnnual" aria-pressed="true">Pago anual (recomendado)</button>
+                            <button type="button" class="pay-toggle-btn" id="payMonthly" aria-pressed="false">Pago mensual</button>
+                        </div>
+                </div>
                 <div class="pricing-carousel" id="pricingCarousel">
                     <div class="pricing-tabs" role="tablist" aria-label="Planes">
                         <button class="pricing-tab-button active" data-index="0" role="tab" aria-selected="true">Basico</button>
@@ -288,66 +294,58 @@
                     </div>
                     <div class="carousel-track">
             <!-- Básico -->
-            <div class="card-price pricing-card">
+                        <div class="card-price pricing-card" data-annual="250000" data-monthly="99000">
               <h3>Principiante</h3>
               <span class="price-amount">Gs. 250.000 <small>/Pago único</small><br><small>Ideal para principiantes</small></span>
               <ul class="benefits-list">
-                <li>Cuenta básica</li>
-                <li>Hasta 5 links por mes</li>
-                <li>Hasta 5 QR por mes</li>
-                <li>Monedas Gs - USD</li>
-                <li>Hasta 100 USD por link o QR</li>
-                <li>Hasta 1.000 USD mensual en transacciones</li>
-                <li>Comisión del 15% + IVA</li>
-                <li>Proceso de acreditación 72hs</li>
-                <li>Desembolso dia lunes</li>
-                <li class="locked">Préstamos</li>
-                <li class="locked">Multi-dispositivos</li>
-              </ul>
+                <li>Cuenta básica en Gs</li>
+                <li>Hasta 10 links o QR por mes</li>
+                <li>Hasta 700.000 Gs por link o QR</li>
+                <li>Hasta 7.000.000 Gs/mes en trans.</li>
+                <li>Comisión por trans. del 15% + IVA</li>
+                <li>Desembolso día lunes</li>
+                            </ul>
               <a href="#" class="cta-button cta-primary choose-plan" data-plan="Básico" data-amount="250000">Elegir este plan</a>
             </div>
                         <!-- Estándar -->
-                        <div class="card-price pricing-card">
+                                                <div class="card-price pricing-card" data-annual="600000" data-monthly="200000">
                             <div class="most-badge">Más adquirido</div>
                             <h3>Emprendedor regular</h3>
-                                                        <span class="price-amount">Gs. 600.000 <small>/Pago único</small><br><small>Ideal para emprendedores regulares</small></span>
+              <span class="price-amount">Gs. 600.000 <small>/Pago único</small><br><small>Ideal para emprendedores regulares</small></span>
               <ul class="benefits-list">
-                <li>Cuenta corriente</li>
+                <li>Cuenta corriente en USD</li>
                 <li>Hasta 30 links por mes</li>
                 <li>Hasta 30 QR por mes</li>
                 <li>Gs - USD - EUR</li>
                 <li>Hasta 1.000 USD por link o QR</li>
-                <li>Hasta 30.000 USD mensual en transacciones</li>
-                <li>Comisión del 5% + IVA</li>
-                <li>Préstamo hasta Gs. 100.000.000</li>
-                <li>Proceso de acreditación 24hs</li>
+                <li>Hasta 30.000 USD/mes en trans.</li>
+                <li>Comisión por trans. del 6,5% + IVA</li>
+                <li>Préstamo hasta Gs. 200.000.000</li>
+                <li>Proceso de acreditación 48hs</li>
                 <li>Desembolso al instante</li>
-                <li>Soporte vía WhatsApp</li>
-                <li>Multi-dispositivos</li>
-                <li>Tasas preferenciales</li>
-              </ul>
-              <a href="#" class="cta-button cta-primary choose-plan" data-plan="Estándar" data-amount="600000">Elegir este plan</a>
+                            </ul>
+                            <a href="#" class="cta-button cta-primary choose-plan" data-plan="Estándar" data-amount="600000">Elegir este plan</a>
             </div>
             <!-- Premium -->
-            <div class="card-price pricing-card">
+                        <div class="card-price pricing-card" data-annual="1500000" data-monthly="350000">
               <h3>Emprendedor Business</h3>
               <span class="price-amount">Gs. 1.500.000 <small>/Pago único</small><br><small>Ideal para emprendedores establecidos</small></span>
               <ul class="benefits-list">
-                <li>Cuenta corriente</li>
+                <li>Cuenta corriente en USD</li>
+                <li>Tarjeta de crédito - 2.000 USD</li>
                 <li>links & QR ilimitados</li>
                 <li>+200 monedas</li>
                 <li>Hasta 10.000 USD por link o QR</li>
-                <li>Hasta 500.000 USD mensual en transacciones</li>
-                <li>Comisión del 3,9% + IVA</li>
-                <li>Préstamo hasta Gs. 600.000.000 a sola firma</li>
-                <li>Proceso de acreditación al instante</li>
+                <li>Hasta 500.000 USD/mes en trans.</li>
+                <li>Comisión por trans. del 3,9% + IVA</li>
+                <li>Préstamo a sola firma Gs. 600.000.000 </li>
+                <li>Proceso de acreditación 24hs</li>
                 <li>Desembolso al instante</li>
                 <li>Multi-dispositivos</li>
                 <li>Ejecutivo de cuentas asignado</li>
                  <li>Boton de pago API Woz Pay</li>
-                <li>Paquete accionario de Woz Designs</li>
-              </ul>
-              <a href="#" class="cta-button cta-primary choose-plan" data-plan="Premium" data-amount="1500000">Elegir este plan</a>
+                            </ul>
+                            <a href="#" class="cta-button cta-primary choose-plan" data-plan="Premium" data-amount="1500000">Elegir este plan</a>
             </div>
           </div>
                 </div>
@@ -670,23 +668,7 @@
                                 <span class="pm-check" aria-hidden="true"></span>
                             </div>
 
-                            <div class="pm-option" data-method="wally" role="button" tabindex="0">
-                                <span class="pm-content">
-                                    <strong>Wally</strong>
-                                    <div class="pm-sub">Comisión 5,5% + IVA 10%</div>
-                                    <div class="pm-processor">Procesadora: Bancard</div>
-                                </span>
-                                <span class="pm-check" aria-hidden="true"></span>
-                            </div>
-
-                            <div class="pm-option" data-method="zimple" role="button" tabindex="0">
-                                <span class="pm-content">
-                                    <strong>Zimple</strong>
-                                    <div class="pm-sub">Comisión 5,5% + IVA 10%</div>
-                                    <div class="pm-processor">Procesadora: Bancard</div>
-                                </span>
-                                <span class="pm-check" aria-hidden="true"></span>
-                            </div>
+                            <!-- Wally and Zimple removed per update: use Personal Pay and Tigo Money instead -->
 
                             
                         </div>
@@ -880,6 +862,69 @@ document.querySelectorAll('.faq-question').forEach(btn => {
         window.addEventListener('resize', () => show(idx));
     })();
     </script>
-</body>
+        <script>
+        document.addEventListener('DOMContentLoaded', function(){
+            const btnAnnual = document.getElementById('payAnnual');
+            const btnMonthly = document.getElementById('payMonthly');
+            const cards = Array.from(document.querySelectorAll('.card-price.pricing-card'));
 
+            function formatGs(n){
+                if (!Number.isFinite(n)) return 'Gs. —';
+                const s = String(Math.round(n));
+                return 'Gs. ' + s.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+            }
+
+            // Preserve original price HTML and description for restore
+            cards.forEach(card => {
+                const priceEl = card.querySelector('.price-amount');
+                if (!priceEl) return;
+                card.dataset.originalPriceHtml = priceEl.innerHTML;
+                // capture the descriptive small (usually the second <small>) if present
+                const smalls = priceEl.querySelectorAll('small');
+                card.dataset.priceDescHtml = smalls[1] ? smalls[1].outerHTML : '';
+            });
+
+            function showMonthly(){
+                btnAnnual.classList.remove('active'); btnAnnual.setAttribute('aria-pressed','false');
+                btnMonthly.classList.add('active'); btnMonthly.setAttribute('aria-pressed','true');
+                cards.forEach(card => {
+                    const priceEl = card.querySelector('.price-amount');
+                    if (!priceEl) return;
+                    const monthly = Number(card.dataset.monthly) || 0;
+                    const annualFromMonthly = monthly * 12;
+                    const descHtml = card.dataset.priceDescHtml || '';
+                    // Order: price, then Total anual, then description (Ideal para...)
+                    priceEl.innerHTML = `${formatGs(monthly)} <small>/Pago mensual</small><br><div class="monthly-total"><small>Total anual: ${formatGs(annualFromMonthly)}</small></div>${descHtml ? '<div class="price-desc">' + descHtml + '</div>' : ''}`;
+                });
+            }
+
+            function showAnnual(){
+                btnMonthly.classList.remove('active'); btnMonthly.setAttribute('aria-pressed','false');
+                btnAnnual.classList.add('active'); btnAnnual.setAttribute('aria-pressed','true');
+                cards.forEach(card => {
+                    const priceEl = card.querySelector('.price-amount');
+                    if (!priceEl) return;
+                    const original = card.dataset.originalPriceHtml || priceEl.innerHTML;
+                    // try to split original into price part and description part at first <br>
+                    const parts = original.split(/<br\s*\/?\s*>/i);
+                    const pricePart = parts[0] || original;
+                    const rest = parts.slice(1).join('<br>') || '';
+                    const annual = Number(card.dataset.annual) || 0;
+                    const monthly = Number(card.dataset.monthly) || 0;
+                    const annualFromMonthly = monthly * 12;
+                    const savings = Math.max(0, annualFromMonthly - annual);
+                    const savingsHtml = savings > 0 ? `<div class="annual-savings">Te ahorras ${formatGs(savings)} anuales</div>` : '';
+                    const descHtmlWrapped = rest ? `<div class="price-desc">${rest}</div>` : '';
+                    priceEl.innerHTML = `${pricePart}${savingsHtml ? savingsHtml : ''}${descHtmlWrapped}`;
+                });
+            }
+
+            // default: annual (recommended)
+            showAnnual();
+
+            btnMonthly.addEventListener('click', showMonthly);
+            btnAnnual.addEventListener('click', showAnnual);
+        });
+        </script>
+</body>
 </html>
