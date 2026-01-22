@@ -46,8 +46,11 @@
                 </ul>
 
                 <div class="cta-group left">
-                    <a href="https://api.whatsapp.com/send?phone=595974141073&text=Hola%20quiero%20comprar%20una%20membresia%20anual%20de%20Woz%20Payments" class="cta-button cta-primary cta-register" target="_blank" rel="noopener">Registrate desde Gs 250.000 anual</a>
-                    <a href="https://wozpayments.com/login" class="cta-button cta-secondary cta-login" target="_blank" rel="noopener">Inicia sesión</a>
+                    <a href="#precios" class="cta-button cta-primary cta-register" target="_self" rel="noopener">Nuestras tarifas</a>
+                    <div style="display:flex; flex-direction:column; align-items:flex-start;">
+                        <a href="https://api.whatsapp.com/send?phone=595974141073&text=Hola%2C%20tengo%20una%20web%20y%20quiero%20un%20boton%20de%20pago%20para%20integrar%20a%20mi%20sitio%20web%20con%20el%20Plan%20Business." class="cta-button cta-secondary cta-login" target="_blank" rel="noopener">Boton de pago internacional</a>
+                        <div class="cta-subtext" style="font-size:0.85rem; color:#3b82f6; margin-top:2px; margin-bottom:24px;">Recibe pagos en tu web en dolares con un solo boton</div>
+                    </div>
                     <!-- <a href="#" class="cta-button cta-primary" id="btn-open-woz-form">Genera un link de prueba</a> -->
                 </div>
             </div>
@@ -88,6 +91,18 @@
                             </div>
                         </div>
                     </div>
+            <script>
+            // Wire 'Ver datos bancarios' to open the Plan Payment modal if present
+            document.addEventListener('DOMContentLoaded', function(){
+                const btn = document.getElementById('pmShowBank');
+                const planModal = document.getElementById('planPayModal');
+                if (!btn || !planModal) return;
+                btn.addEventListener('click', function(){
+                    planModal.setAttribute('aria-hidden','false');
+                    planModal.style.display = 'block';
+                });
+            });
+            </script>
                 </div>
                 <div class="hero-type-switch" style="margin-top: 12px;">
                     <button class="demo-type-btn active" data-type="qr" aria-pressed="true">QR</button>
@@ -512,7 +527,7 @@
             <p style="font-size: 1.2rem; margin-bottom: 40px; color: var(--color-secondary);">Únete a Woz Payments hoy y maximiza tus ganancias sin complicaciones.</p>
 
                 <div class="cta-group">
-                <a href="https://api.whatsapp.com/send?phone=595974141073&text=Hola%20quiero%20comprar%20una%20membresia%20anual%20de%20Woz%20Payments" class="cta-button cta-primary" style="background-color: var(--color-secondary); color: var(--color-primary); border-color: var(--color-secondary);" target="_blank" rel="noopener">Registrate desde 250.000 Gs anuales</a>
+                <a href="#precios" class="cta-button cta-primary" style="background-color: var(--color-secondary); color: var(--color-primary); border-color: var(--color-secondary);" target="_self" rel="noopener">Hablar con un vendedor</a>
             </div>
         </div>
     </section>
@@ -618,7 +633,6 @@
                         </div>
                         <div class="pm-options">
                             <div class="pm-group-title" style="margin-top:0; font-weight:600;">Pago por transferencia bancaria</div>
-                            <!-- Beneficios dentro de un cuadro anaranjado muy claro (pequeño) -->
                             <div class="pm-benefits-box">
                                 <div class="pm-benefits-title">Beneficios de pagar via transferencia</div>
                                 <ul class="pm-benefits" aria-label="Beneficios">
@@ -637,43 +651,10 @@
                                 </span>
                                 <span class="pm-check" aria-hidden="true"></span>
                             </div>
-
-                            <div class="pm-other-title">Otros métodos de pago</div>
-                            <div class="pm-group-title" style="margin-top:10px; font-weight:600;">Tarjeta de crédito - debito</div>
-                            <div class="pm-option" data-method="card" role="button" tabindex="0">
-                                <span class="pm-content">
-                                    <strong>Tarjeta de crédito - debito</strong>
-                                    <div class="pm-sub">Comisión 5,5% + IVA 10%</div>
-                                    <div class="pm-processor">Procesadora: Bancard</div>
-                                </span>
-                                <span class="pm-check" aria-hidden="true"></span>
-                            </div>
-
-                            <div class="pm-group-title" style="margin-top:10px; font-weight:600;">Billetera</div>
-                            <div class="pm-option" data-method="personalpay" role="button" tabindex="0">
-                                <span class="pm-content">
-                                    <strong>Personal Pay</strong>
-                                    <div class="pm-sub">Comisión 5,5% + IVA 10%</div>
-                                    <div class="pm-processor">Procesadora: Personal Pay</div>
-                                </span>
-                                <span class="pm-check" aria-hidden="true"></span>
-                            </div>
-
-                            <div class="pm-option" data-method="tigomoney" role="button" tabindex="0">
-                                <span class="pm-content">
-                                    <strong>Tigo Money</strong>
-                                    <div class="pm-sub">Comisión 5,5% + IVA 10%</div>
-                                    <div class="pm-processor">Procesadora: Tigo Money</div>
-                                </span>
-                                <span class="pm-check" aria-hidden="true"></span>
-                            </div>
-
-                            <!-- Wally and Zimple removed per update: use Personal Pay and Tigo Money instead -->
-
-                            
                         </div>
-                        <div class="woz-modal-footer" style="margin-top:12px; display:flex; justify-content:flex-end; gap:8px;">
-                            <button class="cta-button cta-primary" id="pmPayBtn" disabled>Pagar</button>
+                        <div class="woz-modal-footer" style="margin-top:12px; display:flex; flex-direction:column; gap:8px;">
+                            <button class="cta-button cta-primary" id="pmShowBank" style="width:100%;">Ver datos bancarios</button>
+                            <a href="https://api.whatsapp.com/send?phone=595974141073&text=Hola%2C%20tengo%20interes%20en%20comprar%20este%20plan%20para%20recibir%20dinero%20del%20extranjero%2C%20podrian%20llamarme%3F" class="cta-button cta-secondary" id="pmContactSales" target="_blank" rel="noopener" style="width:100%; display:inline-block; text-align:center;">Hablar con un vendedor</a>
                         </div>
                 </div>
             </div>
